@@ -16,6 +16,7 @@ Escriba el resultado a la carpeta `output` de directorio de trabajo.
 
 DROP TABLE IF EXISTS db;
 DROP TABLE IF EXISTS db_counts;
+
 CREATE TABLE db (
   letter string,
   date2 date,

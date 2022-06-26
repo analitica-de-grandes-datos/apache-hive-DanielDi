@@ -45,3 +45,17 @@ LOAD DATA LOCAL INPATH 'data1.csv' INTO TABLE tbl1;
     >>> Escriba su respuesta a partir de este punto <<<
 */
 
+DROP TABLE IF EXISTS db;
+
+CREATE TABLE db AS 
+SELECT dateyear, letter, COUNT(*)
+FROM(
+    SELECT YEAR(c4) AS dateyear, letter 
+    FROM tbl0 LATERAL VIEW EXPLODE(c5) letters AS letter
+    ) t2
+GROUP BY dateyear, letter
+ORDER BY dateyear, letter;
+
+INSERT OVERWRITE LOCAL DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM db;

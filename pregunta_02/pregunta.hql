@@ -26,7 +26,7 @@ CREATE TABLE db (
 LOAD DATA LOCAL INPATH "data.tsv" INTO TABLE db;
 CREATE TABLE db_counts AS
     SELECT letter, date2, value
-    FROM db ORDER BY letter, value;
+    FROM db ORDER BY letter, value, date2;
 
 INSERT OVERWRITE LOCAL DIRECTORY 'output'
 ROW FORMAT DELIMITED FIELDS TERMINATED BY ','

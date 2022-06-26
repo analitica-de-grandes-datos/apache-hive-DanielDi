@@ -29,3 +29,12 @@ LOAD DATA LOCAL INPATH 'data.tsv' INTO TABLE t0;
     >>> Escriba su respuesta a partir de este punto <<<
 */
 
+DROP TABLE IF EXISTS db;
+
+CREATE TABLE db AS 
+SELECT c1, SIZE(c2) AS s2, SIZE(c3) AS s3
+FROM t0;
+
+INSERT OVERWRITE LOCAL DIRECTORY 'output'
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+SELECT * FROM db;
